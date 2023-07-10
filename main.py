@@ -1,5 +1,6 @@
 import psycopg2
 import json
+import datetime
 
 with open('db_login.json') as login:
     conf = json.load(login)
@@ -16,6 +17,18 @@ def create_conn(config):
     return conn
 
 
-DB_con = create_conn(conf)
-curr = DB_con.cursor()
+DB = create_conn(conf)
+cur = DB.cursor()
+
+
+cur.execute("INSERT INTO person (id, name, surname, birth) VALUES (%s, %s, %s, %s)", \
+    ("x7ald", "john", "smith", datetime.date(1995, 8, 12)))
+DB.commit()
+
+cur.execute("SELECT * FROM person;")
+for record in cur:
+    print(record)
+
+DB.close()
+cur.close()
 
