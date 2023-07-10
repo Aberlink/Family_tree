@@ -26,6 +26,14 @@ class Person:
             
     def kill(self, death_date):
         self.death = death_date
+        
+        
+    def is_adult(self, reference=dt.datetime.today().date()):
+        age = reference.year - self.birth.year
+        compare = dt.date(reference.year, self.birth.month, self.birth.day)
+        if reference < compare:
+            age -= 1
+        return age >= 18
 
         
         

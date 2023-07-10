@@ -11,10 +11,10 @@ DB = create_conn(conf)
 cur = DB.cursor()
 
 
-mp = Person("kasia", "mysz", dt.date(1995, 8, 12))
+mp = Person("kasia", "mysz", dt.date(2005, 7, 9))
 # mp.push_to_db(DB)
 mp.kill(dt.date(2020,1,10))
-print(mp)
+print(mp.is_adult())
 
 # cur.execute("SELECT * FROM person;")
 # x = cur.fetchall()
